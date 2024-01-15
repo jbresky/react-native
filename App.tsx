@@ -35,6 +35,10 @@ const menuItemsToDisplay = [
   { name: 'Panna Cotta', id: '22W' },
 ]
 
+const TextHeader = () => {
+  return <Text style={styles.heading}>Home</Text>
+}
+
 export default function App() {
 
 
@@ -42,15 +46,24 @@ export default function App() {
   //   'Hummus \n Moutabal \n Falafel \n Marinated Olives \n Kofta \n Eggplant Salad \n Lentil Burger \n Smoked Salmon \n Kofta Burger \n Turkish Kebab \n Fries \n Buttered Rice \n Bread Sticks \n Pita Pocket \n Lentil Soup \n Greek Salad \n Rice Pilaf \n Baklava \n Tartufo \n Tiramisu \n Panna Cotta',
   // ]
 
+  const Separator = () => <View style={styles.separator}></View>
+
   const renderItem = ({ item }: { item: any }) => <Item name={item.name} />
 
   return (
-    <View style={styles.container}>
+    <>
       <Header />
-      <Text style={styles.heading}>Home</Text>
-      <FlatList data={menuItemsToDisplay} keyExtractor={item => item.id} renderItem={renderItem} />
-      {/* <MenuItems items={scrollableItems[0]} /> */}
-    </View>
+      <View style={styles.container}>
+        <FlatList
+          data={menuItemsToDisplay}
+          keyExtractor={item => item.id}
+          renderItem={renderItem}
+          ListHeaderComponent={TextHeader}
+          ItemSeparatorComponent={Separator}
+        />
+        {/* <MenuItems items={scrollableItems[0]} /> */}
+      </View>
+    </>
   );
 }
 
@@ -69,6 +82,10 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   itemText: {
-    fontSize: 36,
+    fontSize: 32,
   },
+  separator: {
+    borderBottomWidth: 1,
+    color: '#EDEFEE'
+  }
 });
