@@ -1,11 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import Header from './components/Header';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hey</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1 }}>
+      <Header />
+      <Text style={{ fontSize: 42, textAlign: 'center' }}>Hey</Text>
+      <ScrollView>
+
+      </ScrollView>
+      {/* <StatusBar style="auto" /> */}
     </View>
   );
 }
