@@ -1,9 +1,13 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { useState } from 'react';
 import { StyleSheet, useColorScheme, Text, View, FlatList, SectionList, ScrollView, TextInput, KeyboardAvoidingView, Platform, Alert, Pressable } from 'react-native';
 import Header from './components/Header';
 import MenuItems from './components/MenuItems';
 import ImageComponent from './components/natives/Image';
 import PressableComponent from './components/natives/Pressable';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import MenuScreen from "./screens/Menu"
+import ReviewScreen from './screens/Review';
 
 const Item = ({ name }: { name: string }) => {
   return (
@@ -85,6 +89,7 @@ export default function App() {
   const [showInputs, setInputs] = useState(true)
 
   const colorScheme = useColorScheme()
+  const Stack = createNativeStackNavigator()
   // const scrollableItems = [
   //   'Hummus \n Moutabal \n Falafel \n Marinated Olives \n Kofta \n Eggplant Salad \n Lentil Burger \n Smoked Salmon \n Kofta Burger \n Turkish Kebab \n Fries \n Buttered Rice \n Bread Sticks \n Pita Pocket \n Lentil Soup \n Greek Salad \n Rice Pilaf \n Baklava \n Tartufo \n Tiramisu \n Panna Cotta',
   // ]
@@ -100,13 +105,23 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {/* <View style={styles.container}> */}
-      <KeyboardAvoidingView style={[styles.container, colorScheme === 'light' ? { backgroundColor: 'white' } : { backgroundColor: '#333333' }]} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <ScrollView keyboardDismissMode='on-drag'>
-          {/* @ts-expect-error */}
-          <PressableComponent setInputs={() => setInputs(!showInputs)} />
-          <Text style={{ fontSize: 20, textAlign: 'center' }}>Color theme is: {colorScheme}</Text>
+      {/* <KeyboardAvoidingView style={[styles.container, colorScheme === 'light' ? { backgroundColor: 'white' } : { backgroundColor: '#333333' }]} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <ScrollView keyboardDismissMode='on-drag'> */}
+        
+          {/* <PressableComponent setInputs={() => setInputs(!showInputs)} /> */}
+
+          {/* REACT NAVIGATION */}
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName='Menu'>
+              <Stack.Screen name='Menu' component={MenuScreen} options={{title: 'Home'}} />
+              <Stack.Screen name='Review' component={ReviewScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        
+
+          {/* <Text style={{ fontSize: 20, textAlign: 'center' }}>Color theme is: {colorScheme}</Text>
           {showInputs && (
             <>
               <TextInput
@@ -126,7 +141,7 @@ export default function App() {
             </>
           )}
         </ScrollView>
-      </KeyboardAvoidingView>
+      </KeyboardAvoidingView> */}
       {/* <SectionList
           sections={menuItemsToDisplay}
           renderItem={renderItem}
