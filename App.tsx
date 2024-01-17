@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, SectionList, ScrollView, TextInput, KeyboardAvoidingView, Platform, Alert } from 'react-native';
+import { StyleSheet, Text, View, FlatList, SectionList, ScrollView, TextInput, KeyboardAvoidingView, Platform, Alert, Pressable } from 'react-native';
 import Header from './components/Header';
 import MenuItems from './components/MenuItems';
 
@@ -80,6 +80,7 @@ const TextHeader = () => {
 export default function App() {
   const [firstName, onChangeFirstName] = useState()
   const [lastName, onChangeLastName] = useState()
+  const [showInputs, setInputs] = useState(true)
 
   // const scrollableItems = [
   //   'Hummus \n Moutabal \n Falafel \n Marinated Olives \n Kofta \n Eggplant Salad \n Lentil Burger \n Smoked Salmon \n Kofta Burger \n Turkish Kebab \n Fries \n Buttered Rice \n Bread Sticks \n Pita Pocket \n Lentil Soup \n Greek Salad \n Rice Pilaf \n Baklava \n Tartufo \n Tiramisu \n Panna Cotta',
@@ -99,28 +100,34 @@ export default function App() {
       <Header />
       {/* <View style={styles.container}> */}
       <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <ScrollView keyboardDismissMode='on-drag'>
-        {/* <Text style={styles.heading}>
+        <ScrollView keyboardDismissMode='on-drag'>
+          {/* <Text style={styles.heading}>
           Please give your information
         </Text> */}
-        <Text style={{fontSize: 22, margin: 10, paddingTop: 20}}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet quia suscipit tempore dolores maiores ex a commodi esse nemo sit asperiores corporis sunt, ad illum ea, nihil officia est hic?
-        </Text>
-        <TextInput
-          style={{ backgroundColor: '#EEEEEE', padding: 20, margin: 10, borderRadius: 10, fontSize: 20 }}
-          placeholder='First Name'
-          // @ts-expect-error
-          onChangeText={onChangeFirstName}
-          onFocus={() => Alert.alert("Input is focused")}
-        />
-        <TextInput
-          style={{ backgroundColor: '#EEEEEE', padding: 20, margin: 10, borderRadius: 10, fontSize: 20 }}
-          placeholder='Last Name'
-          // @ts-expect-error
-          onChangeText={onChangeLastName}
-          clearButtonMode="always"
-        />
-      </ScrollView>
+          <Pressable style={styles.button} onPress={() => setInputs(!showInputs)}>
+            <Text style={{ fontSize: 18, margin: 10, paddingTop: 20 }}>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            </Text>
+          </Pressable>
+          {showInputs && (
+            <>
+              <TextInput
+                style={{ backgroundColor: '#EEEEEE', padding: 20, margin: 15, borderRadius: 10, fontSize: 20 }}
+                placeholder='First Name'
+                // @ts-expect-error
+                onChangeText={onChangeFirstName}
+                onFocus={() => Alert.alert("Input is focused")}
+              />
+              <TextInput
+                style={{ backgroundColor: '#EEEEEE', padding: 20, margin: 15, borderRadius: 10, fontSize: 20 }}
+                placeholder='Last Name'
+                // @ts-expect-error
+                onChangeText={onChangeLastName}
+                clearButtonMode="always"
+              />
+            </>
+          )}
+        </ScrollView>
       </KeyboardAvoidingView>
       {/* <SectionList
           sections={menuItemsToDisplay}
@@ -165,5 +172,11 @@ const styles = StyleSheet.create({
     padding: 20,
     fontSize: 36,
     fontWeight: '500'
+  },
+  button: {
+    // padding: 20,
+    margin: 10,
+    borderRadius: 10,
+    backgroundColor: '#ffd2f9'
   }
 });
