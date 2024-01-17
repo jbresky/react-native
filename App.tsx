@@ -97,8 +97,8 @@ export default function App() {
   return (
     <>
       <Header />
-      <View style={styles.container}>
-      {/* <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      {/* <View style={styles.container}> */}
+      <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView keyboardDismissMode='on-drag'>
         <Text style={styles.heading}>
           Please give your information
@@ -119,20 +119,20 @@ export default function App() {
           onChangeText={onChangeLastName}
         />
       </ScrollView>
-      </KeyboardAvoidingView> */}
-      <SectionList
+      </KeyboardAvoidingView>
+      {/* <SectionList
           sections={menuItemsToDisplay}
           renderItem={renderItem}
           renderSectionHeader={renderSectionHeader}
           ItemSeparatorComponent={Separator}
           ListHeaderComponent={TextHeader}
-        />
+        /> */}
       {/* <FlatList data={menuItemsToDisplay} keyExtractor={item => item.id} renderItem={renderItem}
           ListHeaderComponent={TextHeader}
           ItemSeparatorComponent={Separator}
         /> */}
       {/* <MenuItems items={scrollableItems[0]} /> */}
-      </View>
+      {/* </View> */}
     </>
   );
 }
