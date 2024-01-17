@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, FlatList, SectionList, ScrollView, TextInput, KeyboardAvoidingView, Platform, Alert, Pressable } from 'react-native';
 import Header from './components/Header';
 import MenuItems from './components/MenuItems';
+import ImageComponent from './components/natives/Image';
+import PressableComponent from './components/natives/Pressable';
 
 const Item = ({ name }: { name: string }) => {
   return (
@@ -101,14 +103,10 @@ export default function App() {
       {/* <View style={styles.container}> */}
       <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView keyboardDismissMode='on-drag'>
-          {/* <Text style={styles.heading}>
-          Please give your information
-        </Text> */}
-          <Pressable style={styles.button} onPress={() => setInputs(!showInputs)}>
-            <Text style={{ fontSize: 18, margin: 10, paddingTop: 20 }}>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            </Text>
-          </Pressable>
+
+          {/* @ts-expect-error */}
+          <PressableComponent setInputs={() => setInputs(!showInputs)} />
+          <ImageComponent />
           {showInputs && (
             <>
               <TextInput
@@ -173,10 +171,5 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: '500'
   },
-  button: {
-    // padding: 20,
-    margin: 10,
-    borderRadius: 10,
-    backgroundColor: '#ffd2f9'
-  }
+
 });
