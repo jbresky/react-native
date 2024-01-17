@@ -102,7 +102,7 @@ export default function App() {
     <>
       <Header />
       {/* <View style={styles.container}> */}
-      <KeyboardAvoidingView style={[styles.container, colorScheme === 'dark' ? { backgroundColor: 'white' } : { backgroundColor: '#333333' }]} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <KeyboardAvoidingView style={[styles.container, colorScheme === 'light' ? { backgroundColor: 'white' } : { backgroundColor: '#333333' }]} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView keyboardDismissMode='on-drag'>
           {/* @ts-expect-error */}
           <PressableComponent setInputs={() => setInputs(!showInputs)} />
@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    // backgroundColor: '#fff',
   },
   innerContainer: {
     backgroundColor: '#EEEEEE',
