@@ -8,6 +8,7 @@ import PressableComponent from './components/natives/Pressable';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import MenuScreen from "./screens/Menu"
 import ReviewScreen from './screens/Review';
+import { createDrawerNavigator } from '@react-navigation/drawer'
 
 const Item = ({ name }: { name: string }) => {
   return (
@@ -90,6 +91,7 @@ export default function App() {
 
   const colorScheme = useColorScheme()
   const Stack = createNativeStackNavigator()
+  const Drawer = createDrawerNavigator()
   // const scrollableItems = [
   //   'Hummus \n Moutabal \n Falafel \n Marinated Olives \n Kofta \n Eggplant Salad \n Lentil Burger \n Smoked Salmon \n Kofta Burger \n Turkish Kebab \n Fries \n Buttered Rice \n Bread Sticks \n Pita Pocket \n Lentil Soup \n Greek Salad \n Rice Pilaf \n Baklava \n Tartufo \n Tiramisu \n Panna Cotta',
   // ]
@@ -114,10 +116,14 @@ export default function App() {
 
           {/* REACT NAVIGATION */}
           <NavigationContainer>
-            <Stack.Navigator initialRouteName='Menu'>
+        <Drawer.Navigator useLegacyImplementation={true}>
+          <Drawer.Screen name="Menu" component={MenuScreen}/>
+          <Drawer.Screen name="Review" component={ReviewScreen}/>
+        </Drawer.Navigator>
+            {/* <Stack.Navigator initialRouteName='Menu'>
               <Stack.Screen name='Menu' component={MenuScreen} options={{title: 'Home'}} />
               <Stack.Screen name='Review' component={ReviewScreen} />
-            </Stack.Navigator>
+            </Stack.Navigator> */}
           </NavigationContainer>
         
 
@@ -134,7 +140,6 @@ export default function App() {
               <TextInput
                 style={{ backgroundColor: '#EEEEEE', padding: 20, margin: 15, borderRadius: 10, fontSize: 20 }}
                 placeholder='Last Name'
-                // @ts-expect-error
                 onChangeText={onChangeLastName}
                 clearButtonMode="always"
               />
