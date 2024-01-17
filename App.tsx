@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, SectionList, ScrollView, TextInput, KeyboardAvoidingView, Platform, Alert, Pressable } from 'react-native';
+import { StyleSheet, useColorScheme, Text, View, FlatList, SectionList, ScrollView, TextInput, KeyboardAvoidingView, Platform, Alert, Pressable } from 'react-native';
 import Header from './components/Header';
 import MenuItems from './components/MenuItems';
 import ImageComponent from './components/natives/Image';
@@ -84,6 +84,7 @@ export default function App() {
   const [lastName, onChangeLastName] = useState()
   const [showInputs, setInputs] = useState(true)
 
+  const colorScheme = useColorScheme()
   // const scrollableItems = [
   //   'Hummus \n Moutabal \n Falafel \n Marinated Olives \n Kofta \n Eggplant Salad \n Lentil Burger \n Smoked Salmon \n Kofta Burger \n Turkish Kebab \n Fries \n Buttered Rice \n Bread Sticks \n Pita Pocket \n Lentil Soup \n Greek Salad \n Rice Pilaf \n Baklava \n Tartufo \n Tiramisu \n Panna Cotta',
   // ]
@@ -101,12 +102,11 @@ export default function App() {
     <>
       <Header />
       {/* <View style={styles.container}> */}
-      <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <KeyboardAvoidingView style={[styles.container, colorScheme === 'dark' ? { backgroundColor: 'white' } : { backgroundColor: '#333333' }]} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView keyboardDismissMode='on-drag'>
-
           {/* @ts-expect-error */}
           <PressableComponent setInputs={() => setInputs(!showInputs)} />
-          <ImageComponent />
+          <Text style={{ fontSize: 20, textAlign: 'center' }}>Color theme is: {colorScheme}</Text>
           {showInputs && (
             <>
               <TextInput
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
   },
   innerContainer: {
     backgroundColor: '#EEEEEE',
